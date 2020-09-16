@@ -1,0 +1,24 @@
+<div>
+  <img src="../../../assets/logo.svg" alt="logo do github">
+  <h1>Explore repositórios no Github.</h1>
+
+  <form (ngSubmit)="handleAddRepository()">
+    <div>
+      <input [ngClass]="error ? 'error-input': ''" type="text" placeholder="Digite aqui" name="newRepo" [(ngModel)]="newRepo">
+      <button type="submit">Pesquisar</button>
+    </div>
+    <p class="error" *ngIf="error">
+      {{error}}
+    </p>
+  </form>
+
+  <div class="repos" *ngFor="let repos of repositories">
+    <a (click)="selectedRepository(repos)">
+      <img [src]="repos.owner.avatar_url" [alt]="repos.owner.login">
+      <div>
+        <strong>{{repos.full_name}}</strong>
+        <p>{{repos.description}}</p>
+      </div>
+    </a>
+  </div>
+</div>
